@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d20">
+<title>Until Nikkah — Muhammad & Sarauniya</title>
+
+<style>
+:root {
+  --night: #080d20;
+  --blue: #111b35;
+  --gold: #e9cb8e;
+  --light-gold: #fff0c9;
+  --cream: #fff8e9;
+  --muted: #c4c7d7;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  background:
+    radial-gradient(ellipse at 50% 40%,
+      #233557 0%, transparent 58%),
+    linear-gradient(160deg,
+      #080d20, #111a31 55%, #080d20);
+}
+
+button {
+  font: inherit;
+}
+
+#stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 0 6px #fff3ce;
+  animation: twinkle var(--duration) ease-in-out infinite alternate;
+  animation-delay: var(--delay);
+}
+
+@keyframes twinkle {
+  from {
+    opacity: .15;
+    transform: scale(.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}
+
+.gold-dust {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.dust {
+  position: absolute;
+  color: var(--gold);
+  opacity: 0;
+  animation: rise var(--duration) linear infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(30px) rotate(0);
+    opacity: 0;
+  }
+  15% { opacity: .55; }
+  85% { opacity: .35; }
+  100% {
+    transform: translateY(-110vh) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.page {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 26px 100px;
+  text-align: center;
+  overflow-y: auto;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+
+  transition:
+    opacity .8s ease,
+    transform .8s ease,
+    visibility .8s;
+}
+
+.page.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.kicker {
+  font: 10px Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .3em;
+  color: var(--gold);
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+h1 {
+  font-size: clamp(44px, 11vw, 75px);
+  line-height: 1;
+  font-weight: normal;
+  letter-spacing: -.04em;
+}
+
+h2 {
+  font-size: clamp(31px, 8vw, 47px);
+  line-height: 1.15;
+  font-weight: normal;
+}
+
+.italic {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.body-copy {
+  max-width: 470px;
+  color: #e5e5ef;
+  font-size: clamp(17px, 4.4vw, 20px);
+  line-height: 1.85;
+  margin-top: 23px;
+}
+
+.tiny {
+  font: 10px Arial, sans-serif;
+  line-height: 1.9;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #c2c5d4;
+  margin-top: 27px;
+}
+
+.gold-line {
+  width: 70px;
+  height: 1px;
+  margin: 25px auto;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold),
+    transparent
+  );
+}
+
+.symbol {
+  font-size: 24px;
+  letter-spacing: .45em;
+  color: var(--gold);
+  margin-bottom: 26px;
+}
+
+/* Wedding arch */
+
+.arch {
+  width: 180px;
+  height: 215px;
+  border: 1px solid #e9cb8e9c;
+  border-bottom: none;
+  border-radius: 100px 100px 0 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 29px;
+  box-shadow:
+    inset 0 0 30px #e9cb8e08,
+    0 0 30px #e9cb8e09;
+}
+
+.arch::before {
+  content: "";
+  position: absolute;
+  inset: 9px 9px 0;
+  border: 1px solid #e9cb8e40;
+  border-bottom: none;
+  border-radius: 100px 100px 0 0;
+}
+
+.arch::after {
+  content: "✦";
+  position: absolute;
+  top: 23px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--gold);
+  font-size: 15px;
+}
+
+.arch-inner {
+  font-size: 48px;
+  color: var(--gold);
+  text-shadow: 0 0 25px #e9cb8e50;
+  animation: gentleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes gentleGlow {
+  from {
+    opacity: .7;
+    transform: scale(.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* Crescent */
+
+.crescent {
+  width: 93px;
+  height: 93px;
+  position: relative;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fff0c9, #c99e53);
+  box-shadow: 0 0 45px #e9cb8e30;
+  margin-bottom: 32px;
+}
+
+.crescent::after {
+  content: "";
+  position: absolute;
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  background: #10182f;
+  top: -12px;
+  left: 24px;
+}
+
+/* Wordless visual page */
+
+.wordless {
+  background:
+    radial-gradient(ellipse at center,
+      #e9cb8e0c,
+      transparent 65%);
+}
+
+.visual-universe {
+  position: relative;
+  width: min(86vw, 370px);
+  height: min(60vh, 420px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring {
+  position: absolute;
+  width: 94%;
+  height: 47%;
+  border: 1px solid #e9cb8e55;
+  border-radius: 50%;
+  transform: rotate(-35deg);
+  animation: rotateRing 22s linear infinite;
+}
+
+.ring.two {
+  width: 74%;
+  height: 82%;
+  transform: rotate(40deg);
+  border-color: #d7d9ee40;
+  animation-duration: 31s;
+  animation-direction: reverse;
+}
+
+.ring.three {
+  width: 110%;
+  height: 61%;
+  transform: rotate(65deg);
+  border-color: #e9cb8e26;
+  animation-duration: 38s;
+}
+
+@keyframes rotateRing {
+  to { rotate: 360deg; }
+}
+
+.ring::before,
+.ring::after {
+  content: "✦";
+  position: absolute;
+  color: var(--gold);
+  font-size: 15px;
+  text-shadow: 0 0 12px var(--gold);
+}
+
+.ring::before {
+  top: 8%;
+  left: 20%;
+}
+
+.ring::after {
+  right: 15%;
+  bottom: 10%;
+}
+
+.visual-heart {
+  position: relative;
+  z-index: 2;
+  font-family: Arial, sans-serif;
+  font-size: clamp(90px, 26vw, 135px);
+  color: #f4dba8;
+  text-shadow:
+    0 0 20px #e9cb8e55,
+    0 0 65px #e9cb8e30;
+  animation: heartbeat 3s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.08); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.045); }
+}
+
+.visual-stars {
+  position: absolute;
+  inset: 0;
+}
+
+.visual-stars span {
+  position: absolute;
+  color: var(--gold);
+  animation: sparkle 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes sparkle {
+  from {
+    opacity: .25;
+    transform: scale(.7) rotate(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.2) rotate(25deg);
+  }
+}
+
+/* Du'a card */
+
+.dua-frame {
+  max-width: 500px;
+  width: 100%;
+  border: 1px solid #e9cb8e55;
+  padding: 28px 23px;
+  position: relative;
+}
+
+.dua-frame::before,
+.dua-frame::after {
+  content: "✦";
+  color: var(--gold);
+  position: absolute;
+  background: #10182f;
+  padding: 0 9px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.dua-frame::before {
+  top: -10px;
+}
+
+.dua-frame::after {
+  bottom: -10px;
+}
+
+.arabic {
+  direction: rtl;
+  font-size: clamp(23px, 6vw, 31px);
+  line-height: 1.9;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.translation {
+  font-size: 16px;
+  line-height: 1.9;
+  color: #ece8e0;
+}
+
+.signature {
+  color: var(--gold);
+  font-style: italic;
+  font-size: 25px;
+  margin-top: 25px;
+}
+
+.controls {
+  position: fixed;
+  z-index: 20;
+  bottom: max(18px, env(safe-area-inset-bottom));
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.nav-button {
+  color: var(--cream);
+  background: #ffffff08;
+  border: 1px solid #e9cb8e50;
+  border-radius: 30px;
+  padding: 12px 17px;
+  font: 10px Arial, sans-serif;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.nav-button:active {
+  transform: scale(.96);
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  background: #8d94a8;
+  border-radius: 10px;
+  transition: all .3s;
+}
+
+.dot.active {
+  width: 17px;
+  background: var(--gold);
+}
+
+.hint {
+  position: fixed;
+  bottom: 73px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font: 9px Arial, sans-serif;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #bfc2d1;
+  opacity: .7;
+  pointer-events: none;
+}
+
+@media (max-height: 700px) {
+  .page {
+    padding-top: 20px;
+    padding-bottom: 105px;
+  }
+
+  .arch {
+    width: 135px;
+    height: 155px;
+    margin-bottom: 20px;
+  }
+
+  .body-copy {
+    margin-top: 15px;
+    line-height: 1.65;
+  }
+
+  .crescent {
+    width: 65px;
+    height: 65px;
+    margin-bottom: 22px;
+  }
+
+  .crescent::after {
+    width: 60px;
+    height: 60px;
+    left: 17px;
+    top: -8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="stars"></div>
+<div class="gold-dust" id="dust"></div>
+
+<main id="pages">
+
+  <!-- PAGE 1 -->
+
+  <section class="page active">
+    <div class="kicker">A dream held in du'a</div>
+
+    <div class="arch">
+      <div class="arch-inner">☾</div>
+    </div>
+
+    <h1>
+      Until<br>
+      <span class="italic">Nikkah.</span>
+    </h1>
+
+    <div class="gold-line"></div>
+
+    <p class="body-copy">
+      For Muhammad and his Sarauniya.<br>
+      For the day we've been praying for,<br>
+      and the beautiful life we hope to begin.
+    </p>
+
+    <div class="tiny">
+      Insha'Allah · When Allah makes it easy
+    </div>
+  </section>
+
+
+  <!-- PAGE 2 -->
+
+  <section class="page">
+    <div class="crescent"></div>
+
+    <div class="kicker">One day, insha'Allah</div>
+
+    <h2>
+      The day a<br>
+      <span class="italic">du'a becomes a memory.</span>
+    </h2>
+
+    <p class="body-copy">
+      I wonder what it will feel like to look at you
+      and realise that the day we've been hoping for
+      is finally here.
+    </p>
+
+    <p class="body-copy">
+      Maybe I'll be nervous. Maybe I'll smile
+      without even noticing. But I pray that,
+      in that moment, my heart remembers one thing:
+      <em>Alhamdulillah.</em>
+    </p>
+  </section>
+
+
+  <!-- PAGE 3 -->
+
+  <section class="page">
+    <div class="kicker">What I look forward to most</div>
+
+    <div class="symbol">✦ &nbsp; ☾ &nbsp; ✦</div>
+
+    <h2>
+      Not just the wedding.<br>
+      <span class="italic">The life after it.</span>
+    </h2>
+
+    <p class="body-copy">
+      The ordinary mornings. The little jokes only
+      we understand. Asking how your day went.
+      Sharing meals, making time for each other,
+      praying together, and learning how to handle
+      difficult days with mercy.
+    </p>
+
+    <div class="gold-line"></div>
+
+    <p class="body-copy">
+      I want the beautiful moments, yes.
+      But I want to learn how to honour you
+      through the ordinary ones, too.
+    </p>
+  </section>
+
+
+  <!-- PAGE 4: WORDLESS VISUAL -->
+
+  <section class="page wordless"
+           aria-label="A wordless Nikkah-inspired display of love and stars">
+
+    <div class="visual-universe">
+
+      <div class="visual-stars">
+        <span style="top:8%;left:17%;animation-delay:.2s">✦</span>
+        <span style="top:20%;right:12%;animation-delay:1s">✧</span>
+        <span style="bottom:20%;left:9%;animation-delay:.7s">✦</span>
+        <span style="bottom:9%;right:20%;animation-delay:1.4s">✧</span>
+        <span style="top:48%;left:0%;animation-delay:.5s">·</span>
+        <span style="top:55%;right:0%;animation-delay:1.2s">·</span>
+        <span style="top:0%;left:49%;animation-delay:.9s">✧</span>
+      </div>
+
+      <div class="ring"></div>
+      <div class="ring two"></div>
+      <div class="ring three"></div>
+
+      <div class="visual-heart">♥</div>
+
+    </div>
+
+    <!-- No written message on this page. Just the visual. -->
+
+  </section>
+
+
+  <!-- PAGE 5 -->
+
+  <section class="page">
+    <div class="kicker">A promise to keep working on myself</div>
+
+    <div class="symbol">✧</div>
+
+    <h2>
+      I want to become<br>
+      <span class="italic">a good husband.</span>
+    </h2>
+
+    <p class="body-copy">
+      Not a man who promises perfection,
+      but a man who keeps learning.
+    </p>
+
+    <p class="body-copy">
+      To listen before reacting. To speak with
+      kindness. To take responsibility. To respect
+      your feelings. To admit when I'm wrong.
+      To encourage your growth and protect the
+      trust we build together.
+    </p>
+
+    <div class="gold-line"></div>
+
+    <p class="body-copy">
+      May my love for you be seen in how I treat you,
+      not only in the words I say.
+    </p>
+  </section>
+
+
+  <!-- PAGE 6 -->
+
+  <section class="page">
+    <div class="kicker">A prayer for our future</div>
+
+    <h2>
+      Ya Allah,<br>
+      <span class="italic">make it easy for us.</span>
+    </h2>
+
+    <div class="gold-line"></div>
+
+    <p class="body-copy">
+      If this marriage is good for our deen,
+      our lives, and our hereafter, bring it
+      closer to us in a way that pleases You.
+    </p>
+
+    <p class="body-copy">
+      Bless our efforts. Guide our decisions.
+      Help us prepare wisely. Make us patient
+      with the process and grateful for every
+      step You make possible.
+    </p>
+
+    <div class="tiny">
+      We plan · We prepare · We trust Allah
+    </div>
+  </section>
+
+
+  <!-- PAGE 7 -->
+
+  <section class="page">
+    <div class="kicker">The du'a</div>
+
+    <div class="dua-frame">
+
+      <div class="arabic">
+        رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا
+        وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ
+        وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا
+      </div>
+
+      <div class="gold-line"></div>
+
+      <p class="translation">
+        "Our Lord, grant us from among our spouses
+        and offspring comfort to our eyes and make
+        us an example for the righteous."
+      </p>
+
+      <div class="tiny">
+        Qur'an · Surah Al-Furqan 25:74
+      </div>
+
+    </div>
+
+    <p class="body-copy">
+      Ya Allah, grant us a marriage filled with
+      sakinah, mercy, and barakah.
+    </p>
+
+  </section>
+
+
+  <!-- PAGE 8: CLOSING -->
+
+  <section class="page">
+    <div class="kicker">For the woman I pray to marry</div>
+
+    <div class="arch">
+      <div class="arch-inner">♡</div>
+    </div>
+
+    <h2>
+      My Sarauniya.<br>
+      <span class="italic">My future wife, insha'Allah.</span>
+    </h2>
+
+    <p class="body-copy">
+      I don't know exactly how every step will
+      unfold, but I pray Allah guides us through
+      it with wisdom, sincerity, and ease.
+    </p>
+
+    <div class="gold-line"></div>
+
+    <p class="body-copy">
+      Until that day, I'll keep preparing,
+      keep making du'a, and keep asking Allah
+      to guide me toward becoming a man who
+      knows how to honour the trust of marriage.
+    </p>
+
+    <div class="signature">
+      With love, Muhammad ♡
+    </div>
+
+    <div class="tiny">
+      Until Nikkah · Insha'Allah
+    </div>
+  </section>
+
+</main>
+
+<div class="hint" id="hint">Tap anywhere to continue</div>
+
+<div class="controls">
+  <button class="nav-button" id="back">← Back</button>
+  <div class="dots" id="dots"></div>
+  <button class="nav-button" id="next">Next →</button>
+</div>
+
+<script>
+(function () {
+
+  // Stars
+  const stars = document.getElementById("stars");
+
+  for (let i = 0; i < 100; i++) {
+    const star = document.createElement("span");
+
+    star.className = "star";
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+
+    star.style.setProperty(
+      "--duration",
+      (2 + Math.random() * 4) + "s"
+    );
+
+    star.style.setProperty(
+      "--delay",
+      (-Math.random() * 5) + "s"
+    );
+
+    if (Math.random() > .85) {
+      star.style.width = "3px";
+      star.style.height = "3px";
+    }
+
+    stars.appendChild(star);
+  }
+
+
+  // Floating golden dust
+  const dust = document.getElementById("dust");
+
+  for (let i = 0; i < 22; i++) {
+    const particle = document.createElement("span");
+
+    particle.className = "dust";
+    particle.textContent = Math.random() > .5 ? "✦" : "·";
+
+    particle.style.left = Math.random() * 100 + "%";
+    particle.style.top = (50 + Math.random() * 70) + "%";
+
+    particle.style.setProperty(
+      "--duration",
+      (12 + Math.random() * 18) + "s"
+    );
+
+    particle.style.setProperty(
+      "--delay",
+      (-Math.random() * 25) + "s"
+    );
+
+    particle.style.fontSize =
+      (8 + Math.random() * 10) + "px";
+
+    dust.appendChild(particle);
+  }
+
+
+  // Navigation
+  const pages = [...document.querySelectorAll(".page")];
+  const dotsContainer = document.getElementById("dots");
+
+  let current = 0;
+  let locked = false;
+
+  pages.forEach((page, i) => {
+    const dot = document.createElement("span");
+
+    dot.className = "dot" + (i === 0 ? " active" : "");
+
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = [...dotsContainer.children];
+
+
+  function goTo(number) {
+    if (locked) return;
+
+    locked = true;
+
+    current = (number + pages.length) % pages.length;
+
+    pages.forEach((page, i) => {
+      page.classList.toggle("active", i === current);
+    });
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === current);
+    });
+
+    document.getElementById("back").style.opacity =
+      current === 0 ? ".45" : "1";
+
+    document.getElementById("next").textContent =
+      current === pages.length - 1
+        ? "Again ↻"
+        : "Next →";
+
+    document.getElementById("hint").style.opacity =
+      current === pages.length - 1 ? ".35" : ".7";
+
+    setTimeout(() => {
+      locked = false;
+    }, 650);
+  }
+
+
+  document.getElementById("back").addEventListener(
+    "click",
+    event => {
+      event.stopPropagation();
+      goTo(current - 1);
+    }
+  );
+
+  document.getElementById("next").addEventListener(
+    "click",
+    event => {
+      event.stopPropagation();
+      goTo(current + 1);
+    }
+  );
+
+  dotsContainer.addEventListener("click", event => {
+    const index = dots.indexOf(event.target);
+
+    if (index !== -1) {
+      goTo(index);
+    }
+  });
+
+  document.getElementById("pages").addEventListener(
+    "click",
+    event => {
+      if (event.target.closest("button")) return;
+
+      if (event.clientY < window.innerHeight - 85) {
+        goTo(current + 1);
+      }
+    }
+  );
+
+
+  // Mobile swiping
+  let startX = 0;
+
+  document.addEventListener("touchstart", event => {
+    startX = event.changedTouches[0].screenX;
+  }, { passive: true });
+
+  document.addEventListener("touchend", event => {
+    const endX = event.changedTouches[0].screenX;
+    const distance = endX - startX;
+
+    if (Math.abs(distance) > 60) {
+      goTo(current + (distance < 0 ? 1 : -1));
+    }
+  }, { passive: true });
+
+
+  goTo(0);
+
+})();
+</script>
+
+</body>
+</html>
